@@ -1,44 +1,50 @@
 package com.javaee.lab5;
 
-import com.javaee.lab5.dto.BookDto;
+import com.javaee.lab5.entities.BookEntity;
 import com.javaee.lab5.services.BookService;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BooksController {
-    List<Book> books = new ArrayList<>();
-    BookService bookService;
+    private final BookService bookService;
 
-    @RequestMapping(value = "/books-list", method = RequestMethod.GET)
-    public String booksList(Model model ){
-        model.addAttribute("books", books);
+    @RequestMapping({"/",""})
+    public String index(Model model){
+        model.addAttribute("books",bookService.getAllBooks() );
         return "index";
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/add-book")
-    public void addBook(@Valid @RequestBody BookDto bookDto ){
-        bookService.createBook(bookDto);
+    @RequestMapping(value="/book/{isbn}", method = RequestMethod.GET)
+    public String getBookByIsbn(@PathVariable String isbn, Model model){
+        BookEntity book = bookService.getBookByIsbn(isbn);
+        model.addAttribute("bookIsbn",book.getIsbn() );
+        model.addAttribute("bookTitle",book.getTitle());
+        model.addAttribute("bookAuthor", book.getAuthor());
+        return "book";
+    }
+
+    @RequestMapping(value="/bookByAuthor/{author}", method = RequestMethod.GET)
+    public String getBooksByAuthor(@PathVariable String author, Model model){
+        model.addAttribute("author", author);
+        model.addAttribute("books",bookService.getBooksByAuthor(author) );
+        return "booksList";
     }
 
 
-
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    class FormModel{
-        private String bookTitle;
-        private String bookIsbn;
-        private String bookAuthor;
+    @RequestMapping(value = "/add-book",method = RequestMethod.POST)
+    public ResponseEntity<String> addBook(@Valid final BookEntity bookEntity ){
+        if(bookService.existsIsbn(bookEntity.getIsbn()))
+            return new ResponseEntity<>("This ISBN already exists", HttpStatus.BAD_REQUEST);
+        System.out.println("Added book: " + bookService.createBook(bookEntity).toString());
+        return new ResponseEntity<>("Book added successfully!", HttpStatus.CREATED);
     }
+
 }

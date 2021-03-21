@@ -2,8 +2,8 @@ package com.javaee.lab5.entities;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,14 +15,23 @@ import javax.persistence.Table;
 @ToString
 
 @Entity
-@Table(name = "Book")
+@Table(name="BookEntity")
 public class BookEntity {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    @Column(name = "isbn")
     private String isbn;
+    @Column(name = "title")
     private String title;
+    @Column(name = "author")
     private String author;
 
+//
+//    public static BookEntity fromDto(BookDto bookDto) {
+//        return BookEntity.builder()
+//                .isbn(bookDto.getIsbn())
+//                .title(bookDto.getTitle())
+//                .author(bookDto.getAuthor())
+//                .build();
+//    }
 }

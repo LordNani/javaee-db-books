@@ -4,19 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Books Filtered</title>
 </head>
 <body>
-<form action="/add-book" method="post">
-    ISBN: <input name="isbn">
-    <br/>
-    Title: <input name="title">
-    <br/>
-    Author: <input name="author">
-    <br/>
-    <button type="submit">Add</button>
-</form>
-
+Here's books by author named <p th:text="${author}"></p>
 <table>
     <thead>
     <th>ISBN</th>
