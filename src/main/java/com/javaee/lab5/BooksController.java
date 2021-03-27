@@ -33,10 +33,15 @@ public class BooksController {
         return "book";
     }
 
-    @RequestMapping(value="/bookByAuthor/{author}", method = RequestMethod.GET)
+    @RequestMapping(value="/by-author/{author}", method = RequestMethod.GET)
     public String getBooksByAuthor(@PathVariable String author, Model model){
-        model.addAttribute("author", author);
         model.addAttribute("books",bookRepository.findByAuthor(author) );
+        return "booksList";
+    }
+
+    @RequestMapping(value="/by-title/{title}", method = RequestMethod.GET)
+    public String getBooksByTitle(@PathVariable String title, Model model){
+        model.addAttribute("books",bookRepository.findByTitle(title) );
         return "booksList";
     }
 
