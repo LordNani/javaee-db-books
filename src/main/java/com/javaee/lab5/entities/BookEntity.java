@@ -1,11 +1,10 @@
 package com.javaee.lab5.entities;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,6 +18,9 @@ import javax.persistence.Table;
 public class BookEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     @Column(name = "isbn")
     private String isbn;
     @Column(name = "title")
