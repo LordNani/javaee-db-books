@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile</title>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<a id="back-link" href="/">Index</a>
+
+<p id="p-header"> Profile </p>
+<p th:text="${principal}">Name is </p>
+
+<div class="user-wrapper">
+    Username:
+    <th:block th:text="${#authorization.authentication.principal.username}"/>
+    <br/>
+    Authorities:
+    <th:block th:text="${#authorization.authentication.authorities}"/>
+</div>
+
+<p id="books-header"> My Favorites </p>
+
+
+<div class="wrapper">
+    <div class="controls-wrapper">
+        <div class="form-books-wrapper">
+            <h1>Add To Favorites</h1>
+
+            <form action="/books/save" method='POST'>
+                <label for="fisbn">Book ISBN</label>
+                <input type="text" id="fisbn" name="isbn" placeholder="Book isbn..">
+
+                <label for="ftitle">Book Title</label>
+                <input type="text" id="ftitle" name="title" placeholder="Or by book title..">
+                <button type="submit" id="add-book-btn" class="book-btn">Add</button>
+
+            </form>
+        </div>
+
+        <div class="form-books-wrapper">
+            <h1>Remove From Favorites</h1>
+
+            <form action="/books/remove" method='POST'>
+                <label for="fisbndel">Book ISBN</label>
+                <input type="text" id="fisbndel" name="isbn" placeholder="Book isbn..">
+
+                <label for="ftitledel">Book Title</label>
+                <input type="text" id="ftitledel" name="title" placeholder="Or by book title..">
+                <button type="submit" id="del-book-btn" class="book-btn">Remove</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="list-wrapper">
+
+        <table id="books">
+            <thead>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            </thead>
+
+            <tbody>
+            <tr th:each="book: ${books}">
+                <td th:text="${book.isbn}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

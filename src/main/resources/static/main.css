@@ -1,0 +1,136 @@
+#books {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.list-wrapper{
+    width: 65%;
+}
+
+.controls-wrapper{
+    width: 35%;
+}
+
+#books td, #books th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#books tr:nth-child(even){background-color: #f2f2f2;}
+
+#books tr:hover {background-color: #ddd;}
+
+#books th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#books-header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: #00cd0b;
+    text-align: center;
+}
+
+#p-header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    text-align: center;
+}
+
+.user-wrapper {
+    margin: 30px 20px;
+    background-color: aliceblue;
+    border: black 1px solid;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.book-btn {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.form-books-wrapper {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-list>li{
+    width: 150px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: 24px;
+    color: #E5E4D7;
+    background-color: #2C6700;
+    border-radius: 5%;
+    list-style: none;
+    margin: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    text-decoration: none;
+    color: #E5E4D7;
+}
+
+#back-link{
+    color: black;
+    text-decoration: underline;
+    font-size: 15px;
+}
+
+.wrapper{
+    display: flex;
+
+}
