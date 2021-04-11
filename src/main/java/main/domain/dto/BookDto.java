@@ -16,12 +16,12 @@ public class BookDto {
     @Pattern(regexp = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$")
     private String isbn;
 
-    @NotNull
+    @NotNull(message = "Book title cannot be empty")
     @NotEmpty
 
     private String title;
 
-    @NotNull
+    @NotNull(message = "Book author cannot be empty")
     @NotEmpty
 
     private String author;
