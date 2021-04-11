@@ -10,12 +10,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class BookFindDto {
 
-    @Getter
-    @Setter
+
     private String isbn;
 
-    @Getter
-    @Setter
     private String title;
 
 }

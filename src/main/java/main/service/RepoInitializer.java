@@ -27,7 +27,8 @@ public class RepoInitializer {
         Faker faker = new Faker();
         for(int i = 0; i < 10; ++i){
             Book book = faker.book();
-            books.add(BookEntity.builder().isbn(String.valueOf(i)).title(book.title()).author(book.author()).build());
+            books.add(BookEntity.builder().isbn(faker.code().isbn10(true)).title(book.title()).author(book.author()).build());
+
         }
 
         bookRepository.saveAll(books);

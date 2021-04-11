@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Data
 @AllArgsConstructor
@@ -12,20 +13,17 @@ public class BookDto {
 
     @NotNull
     @NotEmpty
-    @Getter
-    @Setter
+    @Pattern(regexp = "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$")
     private String isbn;
 
     @NotNull
     @NotEmpty
-    @Getter
-    @Setter
+
     private String title;
 
     @NotNull
     @NotEmpty
-    @Getter
-    @Setter
+
     private String author;
 
 }
