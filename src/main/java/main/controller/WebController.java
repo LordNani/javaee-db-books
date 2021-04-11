@@ -3,12 +3,14 @@ package main.controller;
 import lombok.RequiredArgsConstructor;
 import main.controller.exceptions.EmptySearchParamsException;
 import main.controller.exceptions.NotAuthenticatedException;
+import main.domain.dto.BookDto;
 import main.domain.dto.BookFindDto;
 import main.domain.dto.UserDto;
 import main.domain.entities.BookEntity;
 import main.repositories.BookRepository;
 import main.repositories.PermissionRepository;
 import main.repositories.UserRepository;
+import main.service.BookService;
 import main.service.UserBookService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -39,6 +41,7 @@ public class WebController {
     private final PermissionRepository permissionRepository;
 
     private final UserBookService userService;
+    private final BookService bookService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -59,6 +62,34 @@ public class WebController {
         List<BookEntity> books = userService.getUserFavorites(userDetails.getUsername());
         model.addAttribute("books", books);
         return "profile";
+    }
+
+    @PostMapping(value = "/add-book")
+    public ResponseEntity<String> addBook(@Valid final BookDto bookDto ){
+        return bookService.addBook(bookDto);
+    }
+
+    @GetMapping(value = "/add-book")
+    public String getAddBook(){
+        return "addBook";
+    }
+
+    @GetMapping(value="/book/{isbn}")
+    public String getBookByIsbn(@PathVariable String isbn, Model model){
+        model.addAttribute("books",bookRepository.findByIsbn(isbn) );
+        return "catalog";
+    }
+
+    @GetMapping(value="/by-author/{author}")
+    public String getBooksByAuthor(@PathVariable String author, Model model){
+        model.addAttribute("books",bookRepository.findByAuthor(author) );
+        return "catalog";
+    }
+
+    @GetMapping(value="/by-title/{title}")
+    public String getBooksByTitle(@PathVariable String title, Model model){
+        model.addAttribute("books",bookRepository.findByTitle(title) );
+        return "catalog";
     }
 
 

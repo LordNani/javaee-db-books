@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add book</title>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+
+</head>
+<body>
+<a id="back-link" href="/">Index</a>
+<h1 class="hea">Add book</h1>
+<div class="wrapper">
+<form action="/add-book" method="post">
+    <label for="fisbn">Book ISBN</label>
+    <input name="isbn" type="text" id="fisbn">
+    <label for="ftitle">Book Title</label>
+    <input name="title" type="text" id="ftitle">
+    <label for="fauthor">Book Author</label>
+    <input name="author" type="text" id="fauthor">
+    <button type="submit" class="book-btn">Add</button>
+</form>
+</div>
+</body>
+</html>

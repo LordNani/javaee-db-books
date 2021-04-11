@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 public class EmptySearchParamsException extends WebException {
 
     public EmptySearchParamsException() {
-        super("Can't find book if the parameters are empty", HttpStatus.UNAUTHORIZED);
+        super("Can't find book if the parameters are empty", HttpStatus.BAD_REQUEST);
     }
 
 }

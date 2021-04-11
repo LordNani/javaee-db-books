@@ -17,9 +17,9 @@
   <li th:if="${#authorization.expression('isFullyAuthenticated()')}">
     <a href="/logout">Logout page</a>
   </li>
-<!--  <li th:if="${#authorization.expression('hasAuthority(''VIEW_ADMIN'')')}">-->
-<!--    <a href="/admin">Admin root page</a>-->
-<!--  </li>-->
+  <li th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+    <a href="/add-book">Add a book</a>
+  </li>
 <!--  <li th:if="${#authorization.expression('hasAuthority(''VIEW_ADMIN'')')}">-->
 <!--    <a href="/admin/subpage">Admin subpage</a>-->
 <!--  </li>-->

@@ -21,6 +21,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/books/*").authenticated()
+                .antMatchers("/books/*").authenticated()
+                .antMatchers("/add-book").hasAuthority("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().permitAll()
